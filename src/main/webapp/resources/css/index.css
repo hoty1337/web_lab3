@@ -1,0 +1,39 @@
+
+div#header{
+    width: 100%;
+    background: #3B945E;
+    position:fixed;
+    top: 0;
+    left: 0;
+}
+
+div {
+    text-align: center;
+}
+
+body {
+    background: #65CCB8;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+#main {
+    position: absolute;
+    width: 500px;
+    height: 200px;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -100px;
+    background: chartreuse;
+}
+
+[type='button'] {
+    height: 50px;
+    width: 150px;
+    border-style: none;
+    background: coral;
+}
+
+[type='button']:hover {
+    background: chocolate;
+}

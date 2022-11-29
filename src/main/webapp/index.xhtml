@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Start page</title>
+    <h:outputStylesheet name="index.css" library="css" />
+
+</h:head>
+
+<h:body>
+    <div id = "header">
+        <header>
+                <h1>Клименко Вячеслав, P32081, Вариант 32198</h1>
+        </header>
+    </div>
+
+    <div id = "main">
+
+        <div>
+            <h2 id="time"></h2>
+        </div>
+
+        <div>
+            <h:button outcome="main" value="Начать!"/>
+        </div>
+    </div>
+
+
+    <h:outputScript name="timer.js" library="js"/>
+    <ui:insert name="js"/>
+</h:body>
+
+</html>

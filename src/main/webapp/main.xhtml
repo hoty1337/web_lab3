@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <h:outputStylesheet name="style.css" library="css" />
+    <h:outputScript name="jquery-3.5.1.min.js" library="js"/>
+    <title>Main page</title>
+</h:head>
+<h:body>
+    <table id="form">
+        <tr>
+            <td>
+                <canvas id="graph" alt="график"/>
+<!--                <h4 id="err_msg">${errorMessage}</h4>-->
+            </td>
+            <td>
+                <h:form>
+                    <p class="info">Введите координаты точки</p>
+                    <fieldset>
+                        <p>Введите X:
+                            <h:selectOneRadio styleClass="inputX" value="#{pointBean.point.x}">
+                                <f:selectItem itemLabel="-4" itemValue="-4"/>
+                                <f:selectItem itemLabel="-3" itemValue="-3"/>
+                                <f:selectItem itemLabel="-2" itemValue="-2"/>
+                                <f:selectItem itemLabel="-1" itemValue="-1"/>
+                                <f:selectItem itemLabel="0" itemValue="0"/>
+                                <f:selectItem itemLabel="1" itemValue="1"/>
+                                <f:selectItem itemLabel="2" itemValue="2"/>
+                                <f:selectItem itemLabel="3" itemValue="3"/>
+                                <f:selectItem itemLabel="4" itemValue="4"/>
+                                <f:validateRequired/>
+                            </h:selectOneRadio>
+                        </p>
+                        <p>Введите Y:
+                            <h:inputText styleClass="inputY" maxlength="5" autocomplete="off" a:placeholder="от -3 до 3" value="#{pointBean.point.y}">
+                                <f:validateRequired/>
+                                <f:validateDoubleRange minimum="-3" maximum="3"/>
+                            </h:inputText>
+                        </p>
+                        <p>Введите R:
+                            <p:spinner styleClass="inputR" min="0.1" max="3.0" stepFactor="0.1" value="#{pointBean.point.r}">
+                                <f:validateRequired/>
+                            </p:spinner>
+                        </p>
+                        <p:commandButton id="submitButton" styleClass="submitButton" type="submit" value="Рассчитать" action="#{pointBean.addPoint}"
+                                         update="point-table"/>
+                        <p:commandButton id="clearButton" styleClass="clearButton" value="Сбросить" action="#{pointBean.clearPoints}"
+                                         update="point-table" immediate="true"/>
+                        <h:button outcome="index" value="На главную"/>
+
+                        <div class="footer">
+                            <p:dataTable styleClass="point-table" id="point-table" class="point" var="point" value="#{pointBean.points}"
+                                         emptyMessage="">
+                                <p:column headerText="X">
+                                    <h:outputText value="#{point.x}" />
+                                </p:column>
+
+                                <p:column headerText="Y">
+                                    <h:outputText value="#{point.y}" />
+                                </p:column>
+
+                                <p:column headerText="R">
+                                    <h:outputText value="#{point.r}" />
+                                </p:column>
+
+                                <p:column headerText="Результат">
+                                    <h:outputText styleClass="${point.classHit}" value="#{point.stringHit}" />
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+<!--                        <input type="button" id="submit" value="Рассчитать" onclick="subm();">-->
+                    </fieldset>
+                </h:form>
+            </td>
+        </tr>
+    </table>
+    <h:outputScript name="graph.js" library="js"/>
+
+    <ui:insert name="js"/>
+</h:body>
+
+</html>
