@@ -18,6 +18,7 @@ public class PointBean implements Serializable {
     private EntityManagerFactory emFactory;
     private EntityManager em;
     private EntityTransaction transaction;
+    private String error = "";
 
     public PointBean() {
         point = new Point();
@@ -39,6 +40,7 @@ public class PointBean implements Serializable {
             points = em.createQuery("select p from Point p", Point.class).getResultList();
             transaction.commit();
         } catch (RuntimeException e) {
+            error = e.getMessage();
             if(transaction.isActive()) {
                 transaction.rollback();
             }
@@ -55,6 +57,7 @@ public class PointBean implements Serializable {
             point = new Point();
             transaction.commit();
         } catch (RuntimeException e) {
+            error = e.getMessage();
             if(transaction.isActive()) {
                 transaction.rollback();
             }
@@ -70,12 +73,17 @@ public class PointBean implements Serializable {
             points.clear();
             transaction.commit();
         } catch (RuntimeException e) {
+            error = e.getMessage();
             if(transaction.isActive()) {
                 transaction.rollback();
             }
             throw e;
         }
         return true;
+    }
+
+    public String getError() {
+        return error;
     }
 
     public Point getPoint() {
