@@ -176,7 +176,7 @@ $(function() {
     }
 
     function clearCanvasCurrent() {
-        cnvs.getContext('2d').clearRect(0, 0, cnvs.width(), cnvs.height());
+        cnvs.getContext('2d').clearRect(0, 0, cnvs.width, cnvs.height);
     }
 
     $('.clearButton').on('click', () => {
