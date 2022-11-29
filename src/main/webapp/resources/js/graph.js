@@ -180,11 +180,13 @@ $(function() {
     }
 
     $('.clearButton').on('click', () => {
-        location.reload();
+        clearCanvasCurrent();
+        drawCanvas();
     });
 
     $('.submitButton').on('click', () => {
         validateForm();
+        drawDotOnGraph(xCoord, yCoord, rCoord, checkHit(xCoord, yCoord, rCoord) ? 'Попадание' : 'Промах');
     });
 
     cnvs.addEventListener('click', (event) => {
