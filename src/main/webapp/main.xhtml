@@ -54,7 +54,7 @@
                                          update="point-table"/>
                         <p:commandButton id="clearButton" styleClass="clearButton" value="Сбросить" action="#{pointBean.clearPoints}"
                                          update="point-table" immediate="true"/>
-                        <h:button outcome="index" value="На главную"/>
+                        <p:button outcome="index" value="На главную"/>
 
                         <div class="footer">
                             <p:dataTable styleClass="point-table" id="point-table" class="point" var="point" value="#{pointBean.points}"
