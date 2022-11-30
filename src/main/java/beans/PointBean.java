@@ -48,7 +48,7 @@ public class PointBean implements Serializable {
         }
     }
 
-    public boolean addPoint() {
+    public void addPoint() {
         try {
             transaction.begin();
             point.checkHit();
@@ -63,10 +63,9 @@ public class PointBean implements Serializable {
             }
             throw e;
         }
-        return true;
     }
 
-    public boolean clearPoints() {
+    public String clearPoints() {
         try {
             transaction.begin();
             em.createQuery("delete from Point").executeUpdate();
@@ -79,7 +78,7 @@ public class PointBean implements Serializable {
             }
             throw e;
         }
-        return true;
+        return "redirect";
     }
 
     public String getError() {
