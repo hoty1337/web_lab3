@@ -158,6 +158,7 @@ $(function() {
     }
 
     function validateR() {
+        rCoord = $('.ui-spinner-input').val().replace(',', '.');
         if (isNumeric(rCoord) && rCoord >= R_MIN && rCoord <= R_MAX) {
             info.text('Введите координаты точки')
             return true;
@@ -174,15 +175,6 @@ $(function() {
     function validateForm() {
         return validateX() && validateY() && validateR();
     }
-
-    function clearCanvasCurrent() {
-        cnvs.getContext('2d').clearRect(0, 0, cnvs.width, cnvs.height);
-    }
-
-    $('.clearButton').on('click', () => {
-        clearCanvasCurrent();
-        drawCanvas();
-    });
 
     $('.submitButton').on('click', () => {
         validateForm();
