@@ -1,4 +1,17 @@
+body {
+    background: #65CCB8;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
 .graphicc {
     vertical-align: top;
     padding-top: 5%;
+}
+fieldset {
+    background: #3B945E;
+    border-style: none;
+}
+
+tr[data-ri="0"] {
+    background: #ffeb3b !important;
 }
