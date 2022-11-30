@@ -53,7 +53,7 @@ public class PointBean implements Serializable {
             transaction.begin();
             point.checkHit();
             em.persist(point);
-            points.add(point);
+            points.add(0, point);
             point = new Point();
             transaction.commit();
         } catch (RuntimeException e) {
