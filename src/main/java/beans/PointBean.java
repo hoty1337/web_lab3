@@ -34,21 +34,23 @@ public class PointBean implements Serializable {
         transaction = em.getTransaction();
     }
 
-    private void loadPoints() {
+    private String loadPoints() {
         try {
             transaction.begin();
             points = em.createQuery("select p from Point p", Point.class).getResultList();
             transaction.commit();
         } catch (RuntimeException e) {
+            e.printStackTrace();
             error = e.getMessage();
             if(transaction.isActive()) {
                 transaction.rollback();
             }
-            throw e;
+            return "error";
         }
+        return "";
     }
 
-    public void addPoint() {
+    public String addPoint() {
         try {
             transaction.begin();
             point.checkHit();
@@ -57,12 +59,14 @@ public class PointBean implements Serializable {
             point = new Point();
             transaction.commit();
         } catch (RuntimeException e) {
+            e.printStackTrace();
             error = e.getMessage();
             if(transaction.isActive()) {
                 transaction.rollback();
             }
-            throw e;
+            return "error";
         }
+        return "";
     }
 
     public String clearPoints() {
@@ -72,11 +76,12 @@ public class PointBean implements Serializable {
             points.clear();
             transaction.commit();
         } catch (RuntimeException e) {
+            e.printStackTrace();
             error = e.getMessage();
             if(transaction.isActive()) {
                 transaction.rollback();
             }
-            throw e;
+            return "error";
         }
         return "redirect";
     }
